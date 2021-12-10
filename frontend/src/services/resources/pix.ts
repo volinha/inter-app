@@ -5,7 +5,7 @@ export const request = (value: number) => {
 }
 
 export const pay = (key: string) => {
-    return api.post(`/pix/request/${key}`);
+    return api.post(`/pix/pay/${key}`);
 }
 
 export const transactions = () => {
