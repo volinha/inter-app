@@ -19,4 +19,5 @@ function globalErrors(err: Error, request: Request, response: Response, next: Ne
   });
 
 }
+
 export { globalErrors };

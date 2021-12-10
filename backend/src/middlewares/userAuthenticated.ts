@@ -4,7 +4,7 @@ import authConfig from '../config/auth';
 
 import AppError from '../shared/error/AppError';
 
-interface TokenPayload {
+interface ITokenPlayload {
     firstName: string;
     lastName: string;
     iat: number;
@@ -17,12 +17,12 @@ export default function userAuthenticated(
     res: Response,
     next: NextFunction,
 ): void {
-    //Validar token JWT
+    // Validação do token JWT
 
     const authHeader = req.headers.authorization;
 
-    if(!authHeader){
-        throw new AppError('JWT not sent!', 401);
+    if (!authHeader) {
+        throw new AppError('Não foi enviado o JWT', 401);
     }
 
     const [, token] = authHeader.split(' ');
@@ -30,7 +30,7 @@ export default function userAuthenticated(
     try {
         const decoded = verify(token, authConfig.jwt.secret);
 
-        const { sub, firstName, lastName } = decoded as TokenPayload;
+        const { sub, firstName, lastName } = decoded as ITokenPlayload;
 
         req.user = {
             id: sub,
@@ -40,6 +40,7 @@ export default function userAuthenticated(
 
         return next();
     } catch {
-        throw new AppError('Invalid JWT token!', 401);
+        throw new AppError('token JWT inválido', 401);
     }
 }
+

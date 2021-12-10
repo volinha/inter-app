@@ -5,6 +5,8 @@
       "rootDir": "./src",
       "outDir": "./build",
       "esModuleInterop": true,
+      "moduleResolution": "node",
+      "noImplicitReturns": false,
       "strict": true,
       "emitDecoratorMetadata": true,
       "strictPropertyInitialization": false,
@@ -14,5 +16,6 @@
         "./@types",
         "./node_modules/@types"
       ]
+      
     }
-  }
+}

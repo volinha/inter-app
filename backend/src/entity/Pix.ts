@@ -1,15 +1,6 @@
-import {
-    Entity, 
-    PrimaryGeneratedColumn, 
-    JoinColumn,
-    Column,
-    CreateDateColumn,
-    ManyToOne,
-    UpdateDateColumn
-} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, JoinColumn, OneToOne, Column, CreateDateColumn,ManyToOne, UpdateDateColumn} from "typeorm";
 
 import { User } from './User';
-
 
 @Entity()
 export class Pix {
@@ -27,7 +18,7 @@ export class Pix {
     @ManyToOne(() => User, user => user.id, {nullable: true})
     @JoinColumn()
     payingUser: User;
-
+    
     @Column()
     value: number;
 
@@ -36,7 +27,5 @@ export class Pix {
 
     @UpdateDateColumn()
     updatedAt: Date;
-
-
 
 }

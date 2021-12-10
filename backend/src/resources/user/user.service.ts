@@ -1,17 +1,16 @@
-import { getRepository } from 'typeorm';
-
-import { User } from '../../entity/User';
+import { getRepository } from "typeorm"
+import { sign } from 'jsonwebtoken';
 import md5 from 'crypto-js/md5';
 
-import { sign } from 'jsonwebtoken';
+import { User } from '../../entity/User';
+import AppError from '../../shared/error/AppError';
 import authConfig from '../../config/auth';
 
-import { UserSignIn } from './dtos/user.signin.dtos';
-import { UserSignUp } from './dtos/user.signup.dtos';
-
-import AppError from '../../shared/error/AppError';
+import { UserSignIn } from './dtos/user.signin.dtos'
+import { UserSignUp } from './dtos/user.signup.dtos'
 
 export default class UserService {
+
 
     async signin(user: UserSignIn) {
         const userRepository = getRepository(User);
@@ -19,10 +18,10 @@ export default class UserService {
         const { email, password } = user;
         const passwordHash = md5(password).toString();
 
-        const existUser = await userRepository.findOne({where: {email, password: passwordHash}});
+        const existUser = await userRepository.findOne({ where: { email, password: passwordHash } })
 
-        if (!existUser){
-            throw new AppError('Usuário não encontrado', 401);
+        if (!existUser) {
+            throw new AppError('Usuário não encontrato', 401);
         }
 
         const { secret, expiresIn } = authConfig.jwt;
@@ -38,27 +37,25 @@ export default class UserService {
             expiresIn,
         });
 
-        // @ts-expect-error ignore
-        delete existUser.password;
+        // @ts-expect-error ignora
+        delete existUser.password
 
-        return {accessToken: token}
+        return { accessToken: token }
     }
-
-
 
     async signup(user: UserSignUp) {
         const userRepository = getRepository(User);
 
-        const existUser = await userRepository.findOne({where: {email: user.email}})
+        const existUser = await userRepository.findOne({ where: { email: user.email } })
 
-        if(existUser){
-            throw new AppError('Já existe um usuário cadastrado com este email!', 401);
+        if (existUser) {
+            throw new AppError('Já existe um usuário cadastrado com esse email', 401);
         }
 
         const userData = {
             ...user,
             password: md5(user.password).toString(),
-            wallet: 10000,
+            wallet: 0,
             accountNumber: Math.floor(Math.random() * 999999),
             accountDigit: Math.floor(Math.random() * 99)
         }
@@ -78,21 +75,23 @@ export default class UserService {
             expiresIn,
         });
 
-        return {accessToken: token}
+
+        return { accessToken: token }
     }
+
 
     async me(user: Partial<User>) {
         const userRepository = getRepository(User);
-        const currentUser = await userRepository.findOne({where: {id: user.id}})
+        const currentUser = await userRepository.findOne({ where: { id: user.id } })
 
-        if(!currentUser){
-            throw new AppError('Usuário não encontrado!', 401);
+        if (!currentUser) {
+            throw new AppError('Usuário não econtrado', 401);
         }
-    
-        // @ts-expect-error ignore
+
+        // @ts-expect-error ignora
         delete currentUser.password
 
         return currentUser;
-    }
 
+    }
 }
