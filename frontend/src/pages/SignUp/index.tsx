@@ -11,7 +11,7 @@ import Button from '../../components/Button';
 const SignUp = () => {
     const navigate = useNavigate();
 
-    const handleToSingIn = () => {
+    const handleToSignUp = () => {
         navigate('/dashboard')
     }
     return (
@@ -29,7 +29,7 @@ const SignUp = () => {
                 </InputContainer>
 
                 <ButtonContainer>
-                    <Button type="button" onClick={handleToSingIn}>CADASTRE-SE</Button>
+                    <Button type="button" onClick={handleToSignUp}>CADASTRE-SE</Button>
                     <p>Já tem uma conta? <Link to="/signin">Entre Já</Link></p>
                 </ButtonContainer>
             </Card>
