@@ -111,6 +111,7 @@ docker-compose up -d
 
 - Criação de usuário deve ser feita via Insomnia, instruções mais detalhadas disponíveis em [dio-inter-backend](https://github.com/volinha/dio-inter-backend), futuramente sendo implementada diretamente pelo frontend.
 - Testes automatizados em JEST.
+- Reorganização de algumas tipagens.
 
 #### 💻 Desenvolvido por Vinícius Fernandes
 [<img src = "https://img.shields.io/badge/facebook-%231877F2.svg?&style=for-the-badge&logo=facebook&logoColor=white">](https://www.facebook.com/viniciusfvb)
