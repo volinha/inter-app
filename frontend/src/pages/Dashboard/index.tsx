@@ -70,7 +70,7 @@ const Dashboard = () => {
                             <h2 className="h2">Receber PIX</h2>
                         </InlineTitle>
                         <InlineContainer>
-                            <Input style={{ flex: 1 }} value={value} onChange={e => setValue(e.target.value)} />
+                            <Input style={{ flex: 1 }} value={value} onChange={e => setValue(e.target.value)} placeholder='Valor'/>
                             <Button onClick={handleNewPayment}>Gerar código</Button>
                         </InlineContainer>
                         {generatedKey && (
@@ -85,7 +85,7 @@ const Dashboard = () => {
                             <h2 className="h2">Pagar PIX</h2>
                         </InlineTitle>
                         <InlineContainer>
-                            <Input style={{ flex: 1 }} value={key} onChange={e => setKey(e.target.value)} placeholder='Insira a chave' />
+                            <Input style={{ flex: 1 }} value={key} onChange={e => setKey(e.target.value)} placeholder='Chave' />
                             <Button onClick={handlePayPix}>Pagar PIX</Button>
                         </InlineContainer>
                     </Card>
