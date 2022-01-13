@@ -58,7 +58,7 @@ As documentações mais detalhadas estão disponíveis em:
 ### Clonar o repositório:
 
 ``` bash
-git clone https://github.com/volinha/inter-app
+$ git clone https://github.com/volinha/inter-app
 ```
 
 ### Instalar e inicializar os servidores:
@@ -66,9 +66,9 @@ git clone https://github.com/volinha/inter-app
 #### Frontend:
 
 ``` bash
-cd .\frontend\
-npm install
-npm start
+$ cd .\frontend\
+$ npm install
+$ npm start
 ```
 
 #### Backend:
@@ -76,15 +76,15 @@ npm start
 - Instalar dependências e inicializar
 
 ``` bash
-cd .\backend\
-npm install
-npm run start:dev
+$ cd .\backend\
+$ npm install
+$ npm run start:dev
 ```
 
 - Inicializar o servidor no `docker-compose`:
 
 ``` bash
-docker-compose up -d
+$ docker-compose up -d
 ```
 
 ## ✨ Funcionalidades
